@@ -124,3 +124,13 @@ fn rocket() -> _ {
         .mount("/", routes![health_check])
 }
 ```
+
+## Adding an add_client form
+
+```sh
+cargo add rocket_dyn_templates --features tera
+```
+
+```sh
+wget -P templates https://raw.githubusercontent.com/SergioBenitez/Rocket/master/examples/forms/templates/macros.html.tera
+```

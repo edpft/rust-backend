@@ -1,12 +1,13 @@
-#[macro_use] extern crate rocket;
+#[macro_use]
+extern crate rocket;
 
-#[cfg(test)] mod tests;
 mod routes;
+#[cfg(test)]
+mod tests;
 
 use routes::health_check;
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build()
-        .mount("/", routes![health_check])
+    rocket::build().mount("/", routes![health_check])
 }

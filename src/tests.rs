@@ -1,4 +1,4 @@
-use rocket::{local::blocking::Client, http::Status};
+use rocket::{http::Status, local::blocking::Client};
 
 #[test]
 fn test_health_check() {

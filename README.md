@@ -44,7 +44,8 @@ cargo install cargo-edit
 Set up GitHub Actions workflows
 
 Copy worflow templates from previous repo. These are based on the ones provided by [actions-rs](https://github.com/actions-rs)
-and [Zero to Production in Rust](https://github.com/LukeMathWalker/zero-to-production).
+and [Zero to Production in Rust](https://github.com/LukeMathWalker/zero-to-production). Though I've removed the `check` job as I now
+think that's unnecessary.
 
 ```sh
 wget -P .github/worflows https://raw.githubusercontent.com/edpft/rust-calendar-app/main/.github/workflows/general.yml

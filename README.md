@@ -54,4 +54,73 @@ wget -P .github/worflows https://raw.githubusercontent.com/edpft/rust-calendar-a
 
 ## Set up a health check endpoint
 
-I want a `/health_check` that returns a `200` status code if the server is up and responding. 
+I want a `/health_check` that returns a `200` status code if the server is up and responding.
+
+Install rocket
+
+```sh
+cargo add rocket@0.5.0-rc.2
+```
+
+Create a basic `main.rs` file which launches an empty rocket.
+
+```rust
+// main.rs
+#[macro_use] extern crate rocket;
+
+#[launch]
+fn rocket() -> _ {
+    rocket::build()
+}
+```
+
+Test that the `/health_check` endpoint returns an 200 status code
+and no body.
+
+```rust
+// test.rs
+use rocket::{local::blocking::Client, http::Status};
+
+#[test]
+fn test_health_check() {
+    // Arrange
+    let client = Client::tracked(super::rocket()).unwrap();
+
+    // Act
+    let response = client.get("/health_check").dispatch();
+
+    // Assert
+    assert_eq!(response.status(), Status::Ok);
+    assert!(response.body().is_none());
+}
+```
+
+Create a `routes.rs` file and add the `/health_check` endpoint 
+
+```rust
+// routes.rs
+use rocket::http::Status;
+
+#[get("/health_check")]
+pub async fn health_check() -> Status {
+    Status::Ok
+}
+```
+
+Update the `main.rs` file:
+
+```rust
+// main.rs
+#[macro_use] extern crate rocket;
+
+#[cfg(test)] mod tests;
+mod routes;
+
+use routes::health_check;
+
+#[launch]
+fn rocket() -> _ {
+    rocket::build()
+        .mount("/", routes![health_check])
+}
+```

@@ -5,7 +5,7 @@ mod routes;
 #[cfg(test)]
 mod tests;
 
-use rocket::fs::{FileServer, relative};
+use rocket::fs::{relative, FileServer};
 
 use rocket_dyn_templates::Template;
 

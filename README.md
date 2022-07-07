@@ -34,3 +34,23 @@ Add GitHub Rust `.gitignore`
 ```sh
 wget https://raw.githubusercontent.com/github/gitignore/main/Rust.gitignore -O .gitignore
 ```
+
+Install `cargo edit`
+
+```sh
+cargo install cargo-edit
+```
+
+Set up GitHub Actions workflows
+
+Copy worflow templates from previous repo. These are based on the ones provided by [actions-rs](https://github.com/actions-rs)
+and [Zero to Production in Rust](https://github.com/LukeMathWalker/zero-to-production).
+
+```sh
+wget -P .github/worflows https://raw.githubusercontent.com/edpft/rust-calendar-app/main/.github/workflows/general.yml
+wget -P .github/worflows https://raw.githubusercontent.com/edpft/rust-calendar-app/main/.github/workflows/audit-on-push.yml
+```
+
+## Set up a health check endpoint
+
+I want a `/health_check` that returns a `200` status code if the server is up and responding. 

@@ -16,32 +16,26 @@
         <form action="/add_client" method="post" class="column">
             <h1 id="form_title">Add a new client</h1>
             {% if errors | length > 1 %}
-                <small class="text-error">
-                    {{ errors | length }} field(s) have errors
-                </small>
-            {% endif %}
-            <div id="name_row" class="row">
-                <div id="first_name_column" class="column name-column">
-                    {{ macro::input(label="First name", type="text", name="first_name") }}
-                </div>
-                <div id="last_name_column" class="column name-column">
-                    {{ macro::input(label="Last name", type="text", name="last_name") }}
-                </div>
+            <div class="error-notification" role="status" aria-live="polite">
+                <p><strong>Alert!</strong></p>
+                <p>{{ errors | length }} field(s) have errors</p>
             </div>
-            <div id="email_address_row" class="row">
+            {% endif %}
+            <div class="column form-group">
+                {{ macro::input(label="First name", type="text", name="first_name") }}
+            </div>
+            <div class="column form-group">
+                {{ macro::input(label="Last name", type="text", name="last_name") }}
+            </div>
+            <div class="column form-group">
                 {{ macro::input(label="Email address", type="email", name="email_address") }}
             </div>
-            <div id="telephone_number_row" class="row">
+            <div class="column form-group">
                 {{ macro::input(label="Telephone number", type="tel", name="telephone_number") }}
             </div>
-            <div id="form_buttons_row" class="row-right-justified">
-                <button type="reset">
-                    Reset
-                </button>
-                <button type="submit">
-                    Add
-                </button>
-            </div>
+            <button type="submit">
+                Add client
+            </button>
         </form>
     </main>
 </body>

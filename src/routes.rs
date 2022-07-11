@@ -26,7 +26,11 @@ pub async fn index() -> Template {
 
 #[post("/", data = "<client>")]
 pub async fn submit<'r>(client: Form<Contextual<'r, Client<'r>>>) -> (Status, Template) {
-    let template = Template::render("index", &client.context);
-
+    let template = match client.context.status().code {
+        200u16 => {
+            Template::render("success", &client.context)
+        }
+        _ => Template::render("index", &client.context),
+    };
     (client.context.status(), template)
 }

@@ -22,6 +22,7 @@
                id="{{ name }}"
                value='{{ self::value_for(name=name) }}'
                class="form-input{% if name in errors %} error{% endif %}"
+               tabindex="0";
         />
     </div>
 {% endmacro input %}

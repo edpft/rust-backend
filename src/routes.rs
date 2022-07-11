@@ -10,11 +10,11 @@ pub async fn health_check() -> Status {
 
 #[derive(Debug, FromForm)]
 pub struct Client<'v> {
-    #[field(validate = len(1..))]
+    #[field(validate = len(1..).or_else(msg!("Enter the client's first name")))]
     pub first_name: &'v str,
-    #[field(validate = len(1..))]
+    #[field(validate = len(1..).or_else(msg!("Enter the client's last name")))]
     pub last_name: &'v str,
-    #[field(validate = contains('@').or_else(msg!("invalid email address")))]
+    #[field(validate = contains('@').or_else(msg!("Enter a valid email address")))]
     pub email_address: &'v str,
     pub telephone_number: &'v str,
 }

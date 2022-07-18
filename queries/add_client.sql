@@ -1,0 +1,1 @@
+INSERT INTO clients (first_name, last_name, email_address, telephone_number) VALUES ($1, $2, $3, $4) RETURNING id;

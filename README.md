@@ -134,3 +134,85 @@ cargo add rocket_dyn_templates --features tera
 ```sh
 wget -P templates https://raw.githubusercontent.com/SergioBenitez/Rocket/master/examples/forms/templates/macros.html.tera
 ```
+
+## Adding Webpack to bundle CSS files
+
+[Install NVM](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+```sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+```
+
+Restart the terminal
+
+```sh
+bash
+```
+
+Install latest LTS version of Node.js
+
+```sh
+nvm install --lts
+```
+
+Activate Node
+
+```sh
+nvm use node
+```
+
+Initialize npm
+
+```sh
+npm init
+```
+
+Install `webpack` and `webpack-cli` locally
+
+```sh
+npm install webpack webpack-cli --save-dev
+```
+
+npm install --save-dev postcss-loader postcss postcss-preset-env
+
+## Database
+
+Based on: https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart
+
+### Install PostgreSQL
+
+Update package index then upgrade system:
+
+```sh
+sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove --purge -y && sudo apt autoclean
+```
+
+Install the Postgres package:
+
+```sh
+sudo apt install postgresql
+```
+
+Start the Postgres service:
+
+```sh
+sudo systemctl start postgresql.service
+```
+
+### Create a New Role
+
+```sh
+sudo -u postgres createuser --interactive
+```
+### Create a New Database
+
+```sh
+sudo -u postgres createdb rust-backend
+```
+
+### Add `rocket_db_pools` to dependencies
+
+```sh
+cargo add rocket_db_pools@0.1.0-rc.2 --features sqlx_postgres,sqlx_macros
+```
+

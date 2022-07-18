@@ -1,0 +1,100 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+    --error-box-background: #fff6f6;
+    --input-border: #8b8a8b;
+    --input-focus-h: 245;
+    --input-focus-s: 100%;
+    --input-focus-l: 42%;
+    --border-radius: 0.25rem;
+}
+
+main {
+    background-color: lightgrey;
+}
+
+form {
+    padding: 2rem;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0.15rem 0.15rem 0.1rem 0.1rem lightslategrey;
+}
+
+.form-input {
+    font-size: 16px;
+    font-size: max(16px, 1em);
+    font-family: inherit;
+    padding: 0.25em 0.5em;
+    background-color: white;
+    border: 2px solid var(--input-border);
+    border-radius: var(--border-radius);
+}
+
+.form-input:focus {
+    border-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
+    box-shadow: 0 0 0 3px hsla(var(--input-focus-h), var(--input-focus-s), calc(var(--input-focus-l) +
+    40%), 0.8);
+}
+
+button {
+    padding: 0.25rem 0.75rem;
+}
+
+.column {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.form-group {
+    flex-grow: 1;
+    gap: 0.25rem;
+}
+
+.column {
+    height: 100vh;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    & .vertically-centered {
+        justify-content: center;
+    }
+    & .horizontally-centered {
+        align-items: center;
+    }
+}
+
+.row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    & .right-justified {
+        justify-content: flex-end;
+    }
+}
+
+.error-notification {
+    border: solid red 0.1rem;
+    border-radius: var(--border-radius);
+    background-color: var(--error-box-background);
+    padding: 1rem;
+}
+
+.error-text {
+    color: red;
+    font-size: 0.75rem;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.input_and_error {
+    flex-grow: 1;
+}

@@ -1,0 +1,2 @@
+[default.databases.rust-backend]
+url="postgres://rust-backend:5up3r53cr3t!@localhost/rust-backend"

@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <main class="column-centered-centered">
+    <main class="column vertically-centered horizontally-centered">
         <form action="/add_client" method="post" class="column">
             <h1 id="form_title">Add a new client</h1>
             {% if errors | length > 1 %}

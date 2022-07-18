@@ -15,8 +15,8 @@ pub struct NewClient<'v> {
     pub telephone_number: &'v str,
 }
 
-pub struct NewClientId{
-    id: i64
+pub struct NewClientId {
+    id: i64,
 }
 
 impl NewClient<'_> {
@@ -49,13 +49,9 @@ pub struct Client {
 
 impl Client {
     pub async fn get(pool: &PgPool, id: i64) -> Result<Client, sqlx::Error> {
-        let client = sqlx::query_file_as!(
-            Client,
-            "queries/get_client.sql",
-            id,
-        )
-        .fetch_one(pool)
-        .await?;
+        let client = sqlx::query_file_as!(Client, "queries/get_client.sql", id,)
+            .fetch_one(pool)
+            .await?;
 
         Ok(client)
     }

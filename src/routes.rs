@@ -1,12 +1,12 @@
 use rocket::form::{Context, Contextual, Form};
 use rocket::http::Status;
-use rocket::response::Redirect;
 use rocket::response::status::NotFound;
+use rocket::response::Redirect;
 use rocket::{post, State};
 use rocket_dyn_templates::Template;
 use sqlx::postgres::PgPool;
 
-use crate::models::{NewClient, Client};
+use crate::models::{Client, NewClient};
 
 #[get("/")]
 pub async fn health_check() -> Status {
@@ -25,7 +25,10 @@ pub async fn add_client<'r>(
 ) -> Result<Redirect, Template> {
     match &client.value {
         Some(client) => {
-            let new_client_id = client.add(pool.inner()).await.expect("Add client to database");
+            let new_client_id = client
+                .add(pool.inner())
+                .await
+                .expect("Add client to database");
             Ok(Redirect::to(format!("/client/{}", new_client_id)))
         }
         None => {
@@ -36,11 +39,14 @@ pub async fn add_client<'r>(
 }
 
 #[get("/<id>")]
-pub async fn get_client<'r>(pool: &'r State<PgPool>, id: i64) -> Result<Template, NotFound<String>> {
+pub async fn get_client<'r>(
+    pool: &'r State<PgPool>,
+    id: i64,
+) -> Result<Template, NotFound<String>> {
     let client = Client::get(pool.inner(), id).await;
-    
+
     match client {
-        Ok(client) => Ok(Template::render("client",  client)),
-        Err(error) => Err(NotFound(error.to_string()))
+        Ok(client) => Ok(Template::render("client", client)),
+        Err(error) => Err(NotFound(error.to_string())),
     }
 }

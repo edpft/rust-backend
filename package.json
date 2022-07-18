@@ -1,0 +1,26 @@
+{
+  "name": "rust-backend",
+  "source": "source/style.css",
+  "targets": {
+    "default": {
+      "distDir": "./static"
+    }
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "devDependencies": {
+    "parcel": "^2.6.2"
+  },
+  "@parcel/transformer-css": {
+    "cssModules": true,
+    "drafts": {
+      "nesting": true
+    },
+    "pseudoClasses": {
+      "focusVisible": "focus-visible"
+    }
+  }
+}

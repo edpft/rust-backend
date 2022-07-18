@@ -6,5 +6,9 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rocket = "0.5.0-rc.2"
+anyhow = "1.0.58"
+chrono = { version = "0.4.19", features = ["serde"] }
+dotenv = "0.15.0"
+rocket = { version = "0.5.0-rc.2", features = ["json"], default-features = false }
 rocket_dyn_templates = { version = "0.1.0-rc.2", features = ["tera"] }
+sqlx = { version = "0.6.0", features = ["macros", "runtime-tokio-rustls", "postgres", "uuid", "chrono", "migrate", "offline"] }
